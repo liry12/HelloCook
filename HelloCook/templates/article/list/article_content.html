@@ -46,7 +46,7 @@
             <h3><span class="glyphicon glyphicon-bullhorn"></span>This article has {{ comments.count }} comments:</h3>
             {% for comment in article.comments.all %}
             <div>
-                <p><strong>{{ comment.commentator }}</strong>说:</p>
+                <p><strong>{{ comment.commentator }}</strong>said:</p>
                 <p style="margin-left:40px;">{{ comment.body }}</p>
             </div>
             {% empty %}
@@ -70,13 +70,10 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <p><input type="submit" name="" value=" 发 评 论 " class="btn btn-primary"></p>
+                        <p><input type="submit" name="" value=" comment " class="btn btn-primary"></p>
                     </div>
                 </div>
             </form>
-            <br />
-            <br />
-            <br />
         </div>
     </div>
 

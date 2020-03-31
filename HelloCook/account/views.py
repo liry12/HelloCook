@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import UserProfile, UserInfo
 from .forms import LoginForm, UserProfileForm, UserInfoForm, UserForm, RegistrationForm
+from django.shortcuts import reverse
 
 
 def user_login(request):
@@ -39,6 +40,7 @@ def user_register(request):
             new_profile.save()
             UserInfo.objects.create(user=new_user)  
             return HttpResponse("Registration successful!")
+            # return HttpResponseRedirect(reverse("account:user_login"))
         else:
             return HttpResponse("Sorry, you can't register")
     else:

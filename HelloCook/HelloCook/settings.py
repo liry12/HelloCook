@@ -128,4 +128,5 @@ STATICFILES_DIRS = [STATIC_DIR,]
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 
+# LOGIN_REDIRECT_URL = '/article/article_titles'
 LOGIN_REDIRECT_URL = '/home/'

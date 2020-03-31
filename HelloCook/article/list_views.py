@@ -39,10 +39,28 @@ def article_titles(request, username=None):
                       {"articles": articles, "page": current_page, "userinfo": userinfo, "user": user})
     return render(request, "article/list/article_titles.html", {"articles": articles, "page": current_page})
 
+# @login_required(login_url='/account/login')
+# def article_detail(request, id, slug):
+#     article = get_object_or_404(ArticlePost, id=id, slug=slug)
+#     return render(request, "article/list/article_content.html", {"article": article})
+
+
 @login_required(login_url='/account/login')
 def article_detail(request, id, slug):
     article = get_object_or_404(ArticlePost, id=id, slug=slug)
-    return render(request, "article/list/article_content.html", {"article": article})
+
+    if request.method == "POST":
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.article = article
+            new_comment.save()
+    else:
+        comment_form = CommentForm()
+
+    return render(request, "article/list/article_content.html",
+                  {"article": article, "comment_form": comment_form})
+
 
 @csrf_exempt
 @require_POST
