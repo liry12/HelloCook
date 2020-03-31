@@ -1,17 +1,3 @@
-{% comment %} 
-{% extends "base.html" %}
-{% block title %} Home page {% endblock %}
-{% block content %}
-<div class="text-center">
-    <h1>Welcome to HelloCook</h1>
-    <h3>Life is short. You need Python</h3>
-    <h2>Django makes it easier to build better Web apps more quickly and with less code.</h2>
-    {% load staticfiles %}
-    <img src="{% static 'images/img1.jpg' %}" width="400px">
-</div>
-{% endblock %} 
-{% endcomment %}
-
 <!DOCTYPE html>
 
 {% load staticfiles %}
@@ -43,8 +29,6 @@
 </head>
 
 <body>
-    {% comment %} {% include "header.html" %} {% endcomment %}
-
     <div class="container">
         {% block content %}
         <div class="text-center">
@@ -56,21 +40,10 @@
             <h3>This is a place for cooking enthusiasts </h3>
             <br />
             <br />
-            {% comment %} <h4>Start by login first.</h2> {% endcomment %}
                 <br />
-
-                <li><a href="{% url 'article:article_titles' %}">文章</a></li>
-                <a href="{% url 'account:user_login' %}">
+                <a href="{% url 'article:article_titles' %}">
                     <button class="button" style="vertical-align:middle">
-                        Log in
-                    </button>
-                </a>
-                <br />
-                <br />
-
-                <a href="{% url 'account:user_register' %}">
-                    <button class="button" style="vertical-align:middle">
-                        Sign up
+                        Start
                     </button>
                 </a>
 

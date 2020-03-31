@@ -2,7 +2,6 @@ from django.urls import path
 from . import views, list_views
 from django.urls import re_path
 
-
 app_name = 'article'  
 
 urlpatterns = [

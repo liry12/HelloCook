@@ -4,14 +4,13 @@
 {% block content %}
 <div>
     <p class="text-right">
-        <!--<button class="btn btn-primary">add column</button>-->
         <button id="add_column" onclick="add_column()" class="btn btn-primary"> add column</button>
     </p>
     <table class="table table-hover">
         <tr>
-            <td>序号</td>
-            <td>栏目名称</td>
-            <td>操作</td>
+            <td>Index</td>
+            <td>Column</td>
+            <td>Operation</td>
         </tr>
         {% for column in columns %}
         <tr>
@@ -25,7 +24,7 @@
             </td>
         </tr>
         {% empty %}
-        <p>还没有设置栏目，太懒了。</p>
+        <p>Start by adding a column.</p>
         {% endfor %}
     </table>
 </div>
@@ -38,9 +37,9 @@
             type: 1,
             skin: "layui-layer-rim",
             area: ["400px", "200px"],
-            title: "新增栏目",
-            content: '<div class="text-center" style="margin-top:20px"><p> 请输入新的栏目名称</p><p>{{ column_form.column }}</p></div>',
-            btn: ['确定', '取消'],
+            title: "Add new column",
+            content: '<div class="text-center" style="margin-top:20px"><p> Please enter name of new column </p><p>{{ column_form.column }}</p></div>',
+            btn: ['YES', 'NO'],
             yes: function (index, layero) {
                 column_name = $('#id_column').val();
                 $.ajax({
@@ -54,7 +53,7 @@
                             parent.location.reload();
                             layer.msg("good");
                         } else {
-                            layer.msg("此栏目已有，请更换名称")
+                            layer.msg("Name repeated, please change name.")
                         }
                     },
                 });
@@ -71,10 +70,10 @@
             type: 1,
             skin: "layui-layer-rim",
             area: ["400px", "200px"],
-            title: "编辑栏目",
-            content: '<div class="text-center" style="margin-top:20px"> <p>请编辑的栏目名称</p><p><input type="text" id="new_name" value="' +
+            title: "Edit column",
+            content: '<div class="text-center" style="margin-top:20px"> <p> Please enter name of new colum </p><p><input type="text" id="new_name" value="' +
                 name + '"></p> </div>',
-            btn: ['确定', '取消'],
+            btn: ['YES', 'NO'],
             yes: function (index, layero) {
                 new_name = $("#new_name").val();
                 $.ajax({
@@ -89,7 +88,7 @@
                             parent.location.reload();
                             layer.msg("good");
                         } else {
-                            layer.msg("新的名称没有保存,修改失败。")
+                            layer.msg("failed")
                         }
                     },
                 });
@@ -103,9 +102,9 @@
             type: 1,
             skin: "layui-layer-rim",
             area: ["400px", "200px"],
-            title: "删除栏目",
-            content: '<div class="text-center" style="margin-top:20px"><p>是否确定删除{'+name+'}栏目</p> </div>',
-            btn:['确定', '取消'], yes: function(){
+            title: "Delete column",
+            content: '<div class="text-center" style="margin-top:20px"><p>Are you sure to delete column {'+name+'} ?</p> </div>',
+            btn:['YES', NO], yes: function(){
                 $.ajax({
                     url: '{% url "article:del_article_column" %}',
                     type:"POST",
@@ -115,7 +114,7 @@
                             parent.location.reload();
                             layer.msg("has been deleted.");
                         }else{
-                            layer.msg("删除失败");
+                            layer.msg("delete failed");
                         }
                     },
                 })

@@ -13,7 +13,6 @@
             <p>
                 <a href="{% url 'article:author_articles' article.author.username %}">{{ article.author.username }}</a>
                 <span style="margin-left:20px" class="glyphicon glyphicon-thumbs-up">{{ total_likes }}like{{ total_likes|pluralize }}</span>
-                {% comment %} <span style="margin-left:20px">{{ total_views }} view{{ total_views|pluralize}}</span> {% endcomment %}
                 <span style="margin-left:20px">{% article_total_views article.id %} views</span>
             </p>
         </header>
@@ -34,35 +33,37 @@
                 </a>
             </p>
         </div>
+        <br>
         <div>
-            <p class="text-center"><strong>点赞本文的读者</strong></p>
+            <p class="text-center"><strong>Who like this article</strong></p>
             {% for user in article.users_like.all %}
             <p class="text-center">{{user.username}}</p>
             {% empty %}
-            <p class="text-center">还没有人对此文章表态</p>
+            <p class="text-center">Be the first to like this article</p>
             {% endfor %}
         </div>
         <div>
-            <h3><span class="glyphicon glyphicon-bullhorn"></span>本文有{{ comments.count }}评论</h3>
+            <h3><span class="glyphicon glyphicon-bullhorn"></span>This article has {{ comments.count }} comments:</h3>
             {% for comment in article.comments.all %}
             <div>
                 <p><strong>{{ comment.commentator }}</strong>说:</p>
                 <p style="margin-left:40px;">{{ comment.body }}</p>
             </div>
             {% empty %}
-            <p>没有评论</p>
+            <p>Be the first to comment!</p>
             {% endfor %}
 
-            <h3><span class="glyphicon glyphicon-send"></span>看文章，发评论，不要沉默</h3>
+            <br>
+            <h3><span class="glyphicon glyphicon-send"></span>Leave your comment.</h3>
             <form action="." method="post" class="form-horizontal" role="form">{% csrf_token %}
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">评论员</label>
+                    <label for="inputEmail3" class="col-sm-2 control-label">Title</label>
                     <div class="col-sm-10">
                         {{ comment_form.commentator}}
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">评论</label>
+                    <label for="inputEmail3" class="col-sm-2 control-label">Content</label>
                     <div class="col-sm-10">
                         {{ comment_form.body }}
                     </div>
@@ -81,19 +82,19 @@
 
     <div class="col-md-3">
         <p class="text-center">
-            <h3>浏览最多的文章</h3>
+            <h3>Most viewed articles</h3>
         </p>
         {% most_viewed_articles 4 %}
         <hr>
 
         <p class="text-center">
-            <h3>最新发表的文章</h3>
+            <h3>Latest Articles</h3>
         </p>
         {% latest_articles 3 %}
         <hr>
 
          <p class="text-center">
-        <h3>最多评论文章</h3></p>
+        <h3>Most commented articles.</h3></p>
         {% most_commented_articles as most_comments %}
         <ul>
             {% for comment_article in most_comments %}
@@ -143,10 +144,10 @@
             },
             success: function (e) {
                 if (e == "1") {
-                    layer.msg("感谢点赞");
+                    layer.msg("Thanks for your like.");
                     window.location.reload();
                 } else {
-                    layer.msg("我会继续努力");
+                    layer.msg("I'll keep working on it.");
                     window.location.reload();
                 }
             },

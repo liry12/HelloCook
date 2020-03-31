@@ -37,7 +37,7 @@ def user_register(request):
             new_profile = userprofile_form.save(commit=False)
             new_profile.user = new_user
             new_profile.save()
-            UserInfo.objects.create(user=new_user)  # 新增，增加myself方法后，才添加这行代码
+            UserInfo.objects.create(user=new_user)  
             return HttpResponse("Registration successful!")
         else:
             return HttpResponse("Sorry, you can't register")
@@ -81,8 +81,10 @@ def myself_edit(request):
         userinfo_form = UserInfoForm(initial={"age": userinfo.age, "profession": userinfo.profession, "aboutme": userinfo.aboutme})
         return render(request, "account/edit_my_infomation.html", {"user_form": user_form, "userprofile_form": userprofile_form, "userinfo_form": userinfo_form})
 
+
 def my_image(request):
     return render(request, 'account/imagecrop.html')
+
 
 @login_required(login_url='/account/login')
 def my_image(request):

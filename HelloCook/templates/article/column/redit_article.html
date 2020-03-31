@@ -9,11 +9,11 @@
         <div style="margin-left:10px">
             <form class="form-horizontal" action="." method="post">{% csrf_token %}
                 <div class="row" style="margin-top: 10px;">
-                    <div class="col-md-2 text-right"><span>标题:</span></div>
+                    <div class="col-md-2 text-right"><span>Title:</span></div>
                     <div class="col-md-10 text-left">{{this_article_form.title}}</div>
                 </div>
                 <div class="row" style="margin-top: 10px;">
-                    <div class="col-md-2 text-right"><span>栏目:</span></div>
+                    <div class="col-md-2 text-right"><span>Column:</span></div>
                     <div class="col-md-10 text-left">
                         <select id="which_column">
                             {% for column in article_columns %}
@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="row" style="margin-top: 10px;">
-                    <div class="col-md-2 text-right"><span>内容:</span></div>
+                    <div class="col-md-2 text-right"><span>Content:</span></div>
                     <div id="editormd" class="col-md-10 text-left">
                         <!--{{article_post_form.body}}-->
                         <textarea style="display:none;" id="id_body">
@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <input type="button" class="btn btn-primary btn-lg" value="发布" onclick="redit_article()">
+                    <input type="button" class="btn btn-primary btn-lg" value="Done" onclick="redit_article()">
                 </div>
             </form>
         </div>

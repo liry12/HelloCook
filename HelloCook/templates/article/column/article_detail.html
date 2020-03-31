@@ -6,14 +6,14 @@
 <div>
     <header>
         <h1>{{ article.title }}</h1>
-        <h3>{{ article.abstract }}</h3>
-        <p>{{ user.username }}</p>
+        <h4>Abstract: {{ article.abstract }}</h3>
+        <p>Author: {{ user.username }}</p>
     </header>
 
     <link rel="stylesheet" href="{% static 'editor/css/editormd.preview.css' %}" />
     <div id='editormd-view'>
         <textarea id="append-test" style="display:none;">
-            {{ article.body }}
+{{ article.body }}
         </textarea>
     </div>
 </div>

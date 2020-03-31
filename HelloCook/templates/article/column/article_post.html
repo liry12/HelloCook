@@ -1,6 +1,6 @@
 {% extends "article/base.html" %}
 {% load staticfiles %}
-{% block title %}article column{% endblock %}
+{% block title %} article column {% endblock %}
 {% block content %}
 
 <link rel="stylesheet" href="{% static 'editor/css/style.css' %}">
@@ -9,11 +9,11 @@
 <div style="margin-left:10px">
     <form class="form-horizontal" action="." method="post">{% csrf_token %}
         <div class="row" style="margin-top: 10px;">
-            <div class="col-md-2 text-right"><span>标题:</span></div>
+            <div class="col-md-2 text-right"><span>Title:</span></div>
             <div class="col-md-10 text-left">{{article_post_form.title}}</div>
         </div>
         <div class="row" style="margin-top: 10px;">
-            <div class="col-md-2 text-right"><span>栏目:</span></div>
+            <div class="col-md-2 text-right"><span>Column:</span></div>
             <div class="col-md-10 text-left">
                 <select id="which_column">
                     {% for column in article_columns %}
@@ -23,11 +23,11 @@
             </div>
         </div>
         <div class="row" style="margin-top: 10px;">
-            <div class="col-md-2 text-right"><span>简介:</span></div>
+            <div class="col-md-2 text-right"><span>Abstract:</span></div>
             <div class="col-md-10 text-left">{{article_post_form.abstract}}</div>
         </div>
         <div class="row" style="margin-top: 10px;">
-            <div class="col-md-2 text-right"><span>内容:</span></div>
+            <div class="col-md-2 text-right"><span>Content:</span></div>
             <div id="editormd" class="col-md-10 text-left">
                 <textarea style="display:none;" id="id_body"></textarea>
             </div>
@@ -63,11 +63,11 @@
             success: function (e) {
                 if (e == "1") {
                     //layer.msg("successful");
-                    location.href = "{% url 'article:article_list' %}"; //修改后：文章发布成功后跳转到文章列表
+                    location.href = "{% url 'article:article_list' %}"; 
                 } else if (e == "2") {
                     layer.msg("sorry.");
                 } else {
-                    layer.msg("项目名称必须写，不能空。");
+                    layer.msg("Content can not be empty。");
                 }
             },
         });

@@ -5,10 +5,10 @@
 <div>
     <table class="table table-hover">
         <tr>
-            <td>序号</td>
-            <td>标题</td>
-            <td>栏目</td>
-            <td>操作</td>
+            <td>Index</td>
+            <td>Title</td>
+            <td>Column</td>
+            <td>Operation</td>
         </tr>
         {% for article in articles %}
         <tr id={{ article.id }}>
@@ -35,10 +35,10 @@
             type: 1,
             skin: "layui-layer-rim",
             area: ["400px", "200px"],
-            title: "删除文章",
-            content: '<div class="text-center" style="margin-top:20px"><p>是否确定删除《' + article_name +
-                '》</p> </div>',
-            btn: ['确定', '取消'],
+            title: "Deletearticle",
+            content: '<div class="text-center" style="margin-top:20px"><p>Are you sure to delete《' + article_name +
+                '》?</p> </div>',
+            btn: ['YES', 'NO'],
             yes: function () {
                 $.ajax({
                     url: '{% url "article:del_article" %}',
@@ -51,7 +51,7 @@
                             parent.location.reload();
                             layer.msg("has been deleted.");
                         } else {
-                            layer.msg("删除失败");
+                            layer.msg("delete failed.");
                         }
                     },
                 })
