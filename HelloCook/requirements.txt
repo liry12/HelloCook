@@ -1,0 +1,11 @@
+autopep8==1.5
+awesome-slugify==1.6.5
+certifi==2019.11.28
+Django==2.1.5
+olefile==0.46
+Pillow==7.0.0
+pycodestyle==2.5.0
+pytz==2019.3
+redis==3.4.1
+regex==2020.2.20
+Unidecode==0.4.21

@@ -13,7 +13,7 @@
             <p>
                 <a href="{% url 'article:author_articles' article.author.username %}">{{ article.author.username }}</a>
                 <span style="margin-left:20px" class="glyphicon glyphicon-thumbs-up">{{ total_likes }}like{{ total_likes|pluralize }}</span>
-                <span style="margin-left:20px">{% article_total_views article.id %} views</span>
+                {% comment %} <span style="margin-left:20px">{% article_total_views article.id %} views</span> {% endcomment %}
             </p>
         </header>
 
@@ -82,9 +82,9 @@
 
     <div class="col-md-3">
         <p class="text-center">
-            <h3>Most viewed articles</h3>
+            <h3>Most liked articles</h3>
         </p>
-        {% most_viewed_articles 4 %}
+        {% most_liked_articles 3 %}
         <hr>
 
         <p class="text-center">
@@ -118,10 +118,6 @@
 <script src='{% static "editor/editormd.js" %}'></script>
 <script type="text/javascript" src="{% static 'js/layer.js'%}"></script>
 <script type="text/javascript">
-    // Method that is called on page load
-    function initalize() {
-        view_article();
-    }
 
     $(function () {
         editormd.markdownToHTML("editormd-view", {
@@ -154,15 +150,6 @@
         });
     }
 
-    function view_article(id) {
-        $.ajax({
-            url: "{% url 'article:view_article' %}",
-            type: "POST",
-            data: {
-                "id": id
-            },
-        });
-    }
 </script>
 
 {% endwith %}
