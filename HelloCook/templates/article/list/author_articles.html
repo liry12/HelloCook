@@ -61,7 +61,7 @@
         <br>
         <div>
             <p>{{ user.username }}</p>
-            <p>共发表{% author_total_articles user %}篇文章</p>
+            <p>{% author_total_articles user %} articles published</p>
             {% if userinfo %}
             <p>{{ userinfo.company }}</p>
             <p>{{ userinfo.aboutme }}</p>
