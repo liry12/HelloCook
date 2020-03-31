@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 {% load staticfiles %}
 <html>
@@ -12,17 +11,21 @@
 </head>
 
 <body>
+
     <div class="container">
+
         {% include 'article/header.html' %}
         <div class="col-md-2">
-        {% include 'article/leftslider.html' %}
+            {% include 'article/leftslider.html' %}
         </div>
         <div class="col-md-10">
             {% block content %}
             {% endblock %}
         </div>
+
         {% include 'footer.html' %}
     </div>
+
 </body>
 
 </html>

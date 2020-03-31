@@ -23,7 +23,6 @@ urlpatterns = [
     # path('', views.index, name='index'),
     path('', TemplateView.as_view(template_name="home.html"), name='home'),
     path('home/', TemplateView.as_view(template_name="home.html"), name='home'), 
-    path('recipe/', include('recipe.urls')),
     path('account/', include('account.urls')),
     path('article/', include('article.urls')),
     path('admin/', admin.site.urls),

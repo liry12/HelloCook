@@ -2,7 +2,8 @@
 <div class="container">
     <nav class="navbar navbar-default" role="navigation">
         <div class="navbar-header">
-            <a class="navbar-brand" href="http://www.taoge100.com"><img src="{% static '/images/logo.png' %}" width="100px"></a>
+            <a class="navbar-brand" href="http://www.taoge100.com"><img src="{% static '/images/logo.png' %}"
+                    width="100px"></a>
         </div>
         <div>
             <ul class="nav navbar-nav" role="tablist">
@@ -22,7 +23,8 @@
                             <li><a href="{% url 'account:my_information' %}">Profile</a></li>
                             <li><a href="{% url 'account:edit_my_information' %}">Edit Profile</a></li>
                             <li><a href="{% url 'account:password_change' %}">Change Password</a></li>
-                            {% comment %} <li><a href="{% url 'account:password_reset' %}">Reset Password</a></li> {% endcomment %}
+                            {% comment %} <li><a href="{% url 'account:password_reset' %}">Reset Password</a></li>
+                            {% endcomment %}
                         </ul>
                     </div>
                 </li>

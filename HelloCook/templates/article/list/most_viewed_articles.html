@@ -1,0 +1,7 @@
+<ul>
+    {% for article in most_viewed_articles %}
+    <li>
+        <a href="{{ article.get_url_path }}">{{ article.title }}</a>
+    </li>
+    {% endfor %}
+</ul>

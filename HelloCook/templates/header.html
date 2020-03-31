@@ -8,7 +8,6 @@
         <div>
             <ul class="nav navbar-nav" role="navigation">
                 <li><a href="{% url 'home' %}">HOME</a></li>
-                <li><a href="{% url 'recipe:recipe_list' %}">RECIPE</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" style="margin-right:10px">
                 {% if user.is_authenticated %}

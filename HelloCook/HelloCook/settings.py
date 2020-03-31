@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'recipe',
     'account',
     'article',
 ]
@@ -130,8 +129,3 @@ MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL = '/home/'
-
-# Redis settings
-REDIS_HOST = 'localhost'
-REDIS_PORT = 6379
-REDIS_DB = 0

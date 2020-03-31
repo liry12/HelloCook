@@ -1,19 +1,20 @@
 {% extends "base.html" %}
 {% load article_tags %}
 {% load staticfiles %}
-{% block title %}articles list{% endblock %}
+{% block title %} articles content {% endblock %}
 {% block content %}
 
 {% with total_likes=article.users_like.count users_like=article.users_like.all %}
+
 <div class="container">
     <div class="col-md-9">
         <header>
             <h1>{{ article.title }}</h1>
             <p>
                 <a href="{% url 'article:author_articles' article.author.username %}">{{ article.author.username }}</a>
-                <span style="margin-left:20px"
-                    class="glyphicon glyphicon-thumbs-up">{{ total_likes }}like{{ total_likes|pluralize }}</span>
-                <span style="margin-left:20px">{{ total_views }} view{{ total_views|pluralize}}</span>
+                <span style="margin-left:20px" class="glyphicon glyphicon-thumbs-up">{{ total_likes }}like{{ total_likes|pluralize }}</span>
+                {% comment %} <span style="margin-left:20px">{{ total_views }} view{{ total_views|pluralize}}</span> {% endcomment %}
+                <span style="margin-left:20px">{% article_total_views article.id %} views</span>
             </p>
         </header>
 
@@ -29,7 +30,7 @@
                     <span class="glyphicon glyphicon-thumbs-up">like</span>
                 </a>
                 <a onclick="like_article({{article.id}}, 'unlike')" href="#">
-                    <span style="margin-left: 15px;" class="glyphicon glyphicon-thumbs-down">unlike</span>
+                    <span style="margin-left: 15px;" class="glyphicon glyphicon-thumbs-down" >unlike</span>
                 </a>
             </p>
         </div>
@@ -72,31 +73,27 @@
                     </div>
                 </div>
             </form>
+            <br />
+            <br />
+            <br />
         </div>
     </div>
 
     <div class="col-md-3">
         <p class="text-center">
-            <h3>最受欢迎文章</h3>
+            <h3>浏览最多的文章</h3>
         </p>
-        <ol>
-            {% for article_rank in most_viewed %}
-            <li>
-                <a href="{{article_rank.get_url_path}}">{{ article_rank.title }}</a>
-            </li>
-            {% endfor %}
-        </ol>
-
+        {% most_viewed_articles 4 %}
         <hr>
-        <p class="text-center">
-            <h3>最新文章</h3>
-        </p>
-        {% latest_articles 4 %}
 
-        <hr>
         <p class="text-center">
-            <h3>最多评论文章</h3>
+            <h3>最新发表的文章</h3>
         </p>
+        {% latest_articles 3 %}
+        <hr>
+
+         <p class="text-center">
+        <h3>最多评论文章</h3></p>
         {% most_commented_articles as most_comments %}
         <ul>
             {% for comment_article in most_comments %}
@@ -105,6 +102,7 @@
             </li>
             {% endfor %}
         </ul>
+        
     </div>
 </div>
 
@@ -119,6 +117,11 @@
 <script src='{% static "editor/editormd.js" %}'></script>
 <script type="text/javascript" src="{% static 'js/layer.js'%}"></script>
 <script type="text/javascript">
+    // Method that is called on page load
+    function initalize() {
+        view_article();
+    }
+
     $(function () {
         editormd.markdownToHTML("editormd-view", {
             htmlDecode: "style, script, iframe",
@@ -149,6 +152,17 @@
             },
         });
     }
+
+    function view_article(id) {
+        $.ajax({
+            url: "{% url 'article:view_article' %}",
+            type: "POST",
+            data: {
+                "id": id
+            },
+        });
+    }
 </script>
+
 {% endwith %}
 {% endblock %}

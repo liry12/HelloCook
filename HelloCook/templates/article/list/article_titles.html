@@ -15,7 +15,9 @@
         {% comment %} <p class="list-group-item-text">作者:{{article.author.username}}</p> {% endcomment %}
         <p class="list-group-item-text">作者:<a
                 href="{% url 'article:author_articles' article.author.username %}">{{article.author.username}}</a></p>
-        <p class="list-group-item-text">概要:{{article.body|slice:'70'| linebreaks}}</p>
+        {% comment %} <p class="list-group-item-text">概要:{{article.body|slice:'70'| linebreaks}}</p> {% endcomment %}
+
+        <p class="list-group-item-text">概要:{{article.abstract | linebreaks}}</p>
     </div>
     {% endfor %}
     {% include "paginator.html" %}
