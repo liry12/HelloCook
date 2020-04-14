@@ -1,6 +1,5 @@
 # HelloCook
-# URL:
-  ruoyuli.pythonanywhere.com
+# URL: ruoyuli.pythonanywhere.com
   
 This is a team project for ITECH course by team L.
 
