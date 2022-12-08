@@ -1,6 +1,6 @@
 autopep8==1.5
 awesome-slugify==1.6.5
-certifi==2019.11.28
+certifi==2022.12.7
 Django==2.1.5
 olefile==0.46
 Pillow==7.0.0
